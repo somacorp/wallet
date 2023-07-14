@@ -1,0 +1,43 @@
+{
+    "origins": [
+        "example.org"
+    ],
+    "constraints": [
+        {
+            "keyIds": [
+                "example"
+            ],
+            "curves": [
+                "secp256k1",
+                "Curve25519"
+            ],
+            "encodings": [
+                "eth",
+                "sha256"
+            ],
+            "validation": {
+                "prefixes": [
+                    "foo.abc.",
+                    "foo.xyz.",
+                    "bar."
+                ]
+            }
+        },
+        {
+            "keyIds": [
+                "elpmaxe"
+            ],
+            "curves": [
+                "secp256k1"
+            ],
+            "encodings": [
+                "eth"
+            ],
+            "validation": {
+                "prefixes": [
+                    ""
+                ]
+            }
+        }
+    ]
+}
