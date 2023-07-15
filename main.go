@@ -16,25 +16,25 @@ type server struct {
 
 func main() {
 
-	confPath := *flag.String("c", "config/conf.json", "conf file")
-	keysPath := *flag.String("k", "config/keys.json", "keys file")
+	confPath := flag.String("c", "config/conf.json", "conf file")
+	keysPath := flag.String("k", "config/keys.json", "keys file")
 
 	flag.Parse()
 
-	if _, err := os.Stat(confPath); errors.Is(err, os.ErrNotExist) {
-		log.Fatalf("file '%s' does not exist", confPath)
+	if _, err := os.Stat(*confPath); errors.Is(err, os.ErrNotExist) {
+		log.Fatalf("file '%s' does not exist", *confPath)
 	}
-	if _, err := os.Stat(keysPath); errors.Is(err, os.ErrNotExist) {
-		log.Fatalf("file '%s' does not exist", keysPath)
+	if _, err := os.Stat(*keysPath); errors.Is(err, os.ErrNotExist) {
+		log.Fatalf("file '%s' does not exist", *keysPath)
 	}
 
 	s := server{}
 
-	go watchAndLoad(confPath, &s.conf, func() {
-		fmt.Printf("%s - %s\n\n", confPath, JSON(s.conf))
+	go watchAndLoad(*confPath, &s.conf, func() {
+		fmt.Printf("%s - %s\n\n", *confPath, JSON(s.conf))
 	})
-	go watchAndLoad(keysPath, &s.keys.privById, func() {
-		fmt.Printf("%s - %s\n\n", keysPath, JSON(s.keys.privById))
+	go watchAndLoad(*keysPath, &s.keys.privById, func() {
+		fmt.Printf("%s - %s\n\n", *keysPath, JSON(s.keys.privById))
 	})
 
 	middleware := ChainMiddleware(s.Guard)
