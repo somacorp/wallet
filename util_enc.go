@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/somacorp/core/enc"
+	"github.com/somacorp/core/crypto/enc"
 )
 
 func useEncoder(encoding string) (enc.Encoder, error) {

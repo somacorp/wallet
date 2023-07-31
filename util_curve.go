@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/somacorp/core/crv"
+	"github.com/somacorp/core/crypto/crv"
 )
 
 func useCurve(curve string) (crv.Curve, error) {
